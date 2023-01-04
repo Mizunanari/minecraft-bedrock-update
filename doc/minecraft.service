@@ -1,0 +1,13 @@
+[Unit]
+Description=Minecraft Bedrock Server daemon
+
+[Service]
+Type=forking
+User=minecraft
+KillMode=none
+Restart=on-failure
+ExecStart=/usr/bin/screen -dmS minecraft /bin/bash -c "/opt/minecraft/start_server.sh"
+ExecStop=/usr/bin/screen -S minecraft -X stuff '^Ustop\r'
+
+[Install]
+WantedBy=multi-user.target
